@@ -13,7 +13,7 @@
 #include "php_ini.h"
 #include "ext/standard/info.h"
 #include "php_fss.h"
-#include "ext/standard/php_smart_str.h"
+#include "ext/standard/php_smart_string.h"
 #include "kwset.h"
 
 typedef struct {
@@ -22,7 +22,7 @@ typedef struct {
 	zval * replace[1];
 } fss_resource_t;
 
-static void _php_fss_close(zend_rsrc_list_entry *rsrc TSRMLS_DC);
+static void _php_fss_close(zend_resource *rsrc TSRMLS_DC);
 
 /* True global resources - no need for thread safety here */
 static int le_fss;
@@ -330,7 +330,7 @@ PHP_FUNCTION(fss_free)
 
 /* {{{ _php_fss_close
    List destructor for FSS handles */
-static void _php_fss_close(zend_rsrc_list_entry *rsrc TSRMLS_DC)
+static void _php_fss_close(zend_resource *rsrc TSRMLS_DC)
 {
 	int i;
 	fss_resource_t * res = (fss_resource_t *)rsrc->ptr;
