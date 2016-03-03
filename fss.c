@@ -114,7 +114,7 @@ PHP_FUNCTION(fss_prep_search)
 	if (Z_TYPE_P(needle) == IS_ARRAY) {
 		hash = Z_ARRVAL_P(needle);
 		for (zend_hash_internal_pointer_reset_ex(hash, &hpos);
-				zend_hash_get_current_data_ex(hash, (void**)&elem, &hpos) == SUCCESS;
+				zend_hash_get_current_data_ex(hash, &hpos) == SUCCESS;
 				zend_hash_move_forward_ex(hash, &hpos))
 		{
 			convert_to_string_ex(elem);
@@ -172,11 +172,11 @@ PHP_FUNCTION(fss_exec_search)
 
 	MAKE_STD_ZVAL(temp);
 	ZVAL_LONG(temp, m.offset[0] + offset);
-	zend_hash_next_index_insert(HASH_OF(return_value), (void *)&temp, sizeof(zval *), NULL);
+	zend_hash_next_index_insert(HASH_OF(return_value), &temp);
 
 	MAKE_STD_ZVAL(temp);
 	ZVAL_LONG(temp, m.size[0]);
-	zend_hash_next_index_insert(HASH_OF(return_value), (void *)&temp, sizeof(zval *), NULL);
+	zend_hash_next_index_insert(HASH_OF(return_value), &temp);
 }
 /* }}} */
 
