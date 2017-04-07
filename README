@@ -1,3 +1,6 @@
+This extension is no longer needed in PHP7!
+
+
 This is a PHP extension for fast string search and replace. It is used by 
 StringUtils.php. It supports multiple search terms. We use it as a
 replacement for PHP's strtr, which is extremely slow in certain cases.
